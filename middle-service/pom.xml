@@ -36,6 +36,16 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xixi.middle</groupId>
+            <artifactId>middle-dao</artifactId>
+        </dependency>
+
     </dependencies>
 
 

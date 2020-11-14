@@ -1,6 +1,8 @@
 package com.xixi.middle.service;
 
 import com.alibaba.fastjson.JSON;
+import com.xiix.middle.dao.mapper.ItemMapper;
+import com.xiix.middle.dao.model.Item;
 import com.xixi.middle.bo.UserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,8 +20,14 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    ItemMapper itemMapper;
 
     public void setUser(UserBO userBO) {
+        Item item = new Item();
+        item.setCode("xiaoyuxixi");
+        item.setName("xiaoyuxixi");
+        itemMapper.insertItem(item);
 
         redisTemplate.opsForValue().set("user", JSON.toJSONString(userBO));
         return;
