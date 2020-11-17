@@ -79,6 +79,16 @@
     </sql>
 
 
+    <select id="query" resultType="com.xiix.middle.dao.model.Item">
+        select * from item
+        <where>
+            <if test="name!=null">
+                name =   #{name}
+            </if>
+        </where>
+    </select>
+
+
 
 
 

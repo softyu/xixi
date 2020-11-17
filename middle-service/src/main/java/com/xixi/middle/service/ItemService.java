@@ -7,35 +7,37 @@ import com.xixi.middle.bo.UserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * @author : xiaoyu
  * @version V1.0
  * @Project: xixi
  * @Package com.xixi.middle.service
- * @Description: TODO
+ * @Description: service
  * @date Date : 2020年11月12日 4:26 下午
  */
 @Service
-public class UserService {
+public class ItemService {
     @Autowired
     RedisTemplate<String, String> redisTemplate;
     @Autowired
     ItemMapper itemMapper;
 
-    public void setUser(UserBO userBO) {
-        Item item = new Item();
-        item.setCode("xiaoyuxixi");
-        item.setName("xiaoyuxixi");
+    public void setItem(Item item) {
         itemMapper.insertItem(item);
-
-        redisTemplate.opsForValue().set("user", JSON.toJSONString(userBO));
         return;
     }
 
-    public UserBO get() {
-        String user = redisTemplate.opsForValue().get("user");
-        UserBO userBO = JSON.parseObject(user, UserBO.class);
-        return userBO;
+    public Item get(String name) {
+        String item = redisTemplate.opsForValue().get("name");
+        Item info = null;
+        if (StringUtils.isEmpty(item)) {
+            info = itemMapper.query(name);
+            redisTemplate.opsForValue().set(name, JSON.toJSONString(info));
+        } else {
+            info = JSON.parseObject(item, Item.class);
+        }
+        return info;
     }
 }

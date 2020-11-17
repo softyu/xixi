@@ -2,6 +2,7 @@ package com.xiix.middle.dao.mapper;
 
 import com.xiix.middle.dao.model.Item;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author author
@@ -13,5 +14,10 @@ public interface ItemMapper {
 
     int updateItem(Item object);
 
-
+    /**
+     * query
+     * @param name
+     * @return
+     */
+    Item query(@Param(value ="name" ) String name);
 }
