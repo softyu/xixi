@@ -1,9 +1,8 @@
 package com.xixi.middle.service;
 
 import com.alibaba.fastjson.JSON;
-import com.xiix.middle.dao.mapper.ItemMapper;
-import com.xiix.middle.dao.model.Item;
-import com.xixi.middle.bo.UserBO;
+import com.xixi.middle.dao.mapper.ItemMapper;
+import com.xixi.middle.dao.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

@@ -1,18 +1,29 @@
-package com.xiix.middle.dao.mapper;
+package com.xixi.middle.dao.mapper;
 
-import com.xiix.middle.dao.model.Item;
+import com.xixi.middle.dao.model.Item;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 
 /**
  * @author author
  */
 @Mapper
 public interface ItemMapper {
+    /**
+     *
+     * @param object
+     * @return
+     */
     int insertItem(Item object);
 
-
+    /**
+     *
+     * @param object
+     * @return
+     */
     int updateItem(Item object);
+    
 
     /**
      * query
@@ -20,4 +31,5 @@ public interface ItemMapper {
      * @return
      */
     Item query(@Param(value ="name" ) String name);
+
 }

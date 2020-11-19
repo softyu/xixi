@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xixi.middle.dao.mapper.RedDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.xixi.middle.dao.model.RedDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="record_id" property="recordId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="is_active" property="isActive" jdbcType="INTEGER" />
+    <result column="cretae_time" property="cretaeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, record_id, amount, is_active, cretae_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from red_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <insert id="insertSelective">
+    insert into red_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">id,</if>
+      <if test="recordId != null">record_id,</if>
+      <if test="amount != null">amount,</if>
+      <if test="isActive != null">is_active,</if>
+      <if test="cretaeTime != null">cretae_time,</if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">#{id,jdbcType=NUMERIC},</if>
+      <if test="recordId != null">#{recordId,jdbcType=NUMERIC},</if>
+      <if test="amount != null">#{amount,jdbcType=DECIMAL},</if>
+      <if test="isActive != null">#{isActive,jdbcType=NUMERIC},</if>
+      <if test="cretaeTime != null">#{cretaeTime,jdbcType=TIMESTAMP},</if>
+    </trim>
+  </insert>
+  <update id="updateRecordId">
+    update red_detail
+    set record_id = #{recordId,jdbcType=NUMERIC}
+  </update>
+
+</mapper>

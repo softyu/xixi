@@ -33,6 +33,24 @@
             </plugin>
 
             <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.11</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configurationFile>
+                        src/main/resources/generatorConfig.xml
+                    </configurationFile>
+                </configuration>
+                <version>1.3.2</version>
+            </plugin>
+
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>

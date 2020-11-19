@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiix.middle.dao.mapper.ItemMapper">
+<mapper namespace="com.xixi.middle.dao.mapper.ItemMapper">
 
 
     <insert id="insertItem" >
@@ -61,7 +61,7 @@
 
 
 
-    <resultMap type="com.xiix.middle.dao.model.Item" id="ItemMap">
+    <resultMap type="com.xixi.middle.dao.model.Item" id="ItemMap">
         <result property="id" column="id"/>
         <result property="code" column="code"/>
         <result property="name" column="name"/>
@@ -79,7 +79,7 @@
     </sql>
 
 
-    <select id="query" resultType="com.xiix.middle.dao.model.Item">
+    <select id="query" resultType="com.xixi.middle.dao.model.Item">
         select * from item
         <where>
             <if test="name!=null">
@@ -87,9 +87,6 @@
             </if>
         </where>
     </select>
-
-
-
 
 
 </mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xixi.middle.dao.mapper.RedRobRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.xixi.middle.dao.model.RedRobRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="red_packet" property="redPacket" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="rob_time" property="robTime" jdbcType="TIMESTAMP" />
+    <result column="is_active" property="isActive" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, red_packet, amount, rob_time, is_active
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from red_rob_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insertSelective">
+    insert into red_rob_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">id,</if>
+      <if test="userId != null">user_id,</if>
+      <if test="redPacket != null">red_packet,</if>
+      <if test="amount != null">amount,</if>
+      <if test="robTime != null">rob_time,</if>
+      <if test="isActive != null">is_active,</if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">#{id,jdbcType=NUMERIC},</if>
+      <if test="userId != null">#{userId,jdbcType=NUMERIC},</if>
+      <if test="redPacket != null">#{redPacket,jdbcType=VARCHAR},</if>
+      <if test="amount != null">#{amount,jdbcType=DECIMAL},</if>
+      <if test="robTime != null">#{robTime,jdbcType=TIMESTAMP},</if>
+      <if test="isActive != null">#{isActive,jdbcType=NUMERIC},</if>
+    </trim>
+  </insert>
+  <update id="updateId">
+    update red_rob_record
+    set id = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>
