@@ -41,4 +41,20 @@
     set record_id = #{recordId,jdbcType=NUMERIC}
   </update>
 
+  <insert id="insertBatch">
+    insert into red_detail(id,
+    record_id,
+    amount,
+    is_active,
+    cretae_time)
+    values
+    <foreach collection="redDetailCollection" item="item" separator=",">
+      (#{item.id,jdbcType=NUMERIC},
+      #{item.recordId,jdbcType=NUMERIC},
+      #{item.amount,jdbcType=DECIMAL},
+      #{item.isActive,jdbcType=NUMERIC},
+      #{item.cretaeTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
 </mapper>

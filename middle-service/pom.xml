@@ -46,6 +46,11 @@
             <artifactId>middle-dao</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.xixi.middle</groupId>
+            <artifactId>middle-common</artifactId>
+        </dependency>
+
     </dependencies>
 
 

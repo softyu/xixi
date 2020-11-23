@@ -30,7 +30,7 @@ public class ItemService {
 
     public Item get(String name) {
         String item = redisTemplate.opsForValue().get("name");
-        Item info = null;
+        Item info;
         if (StringUtils.isEmpty(item)) {
             info = itemMapper.query(name);
             redisTemplate.opsForValue().set(name, JSON.toJSONString(info));

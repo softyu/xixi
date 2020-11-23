@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Description: application
  * @date Date : 2020年11月11日 5:36 下午
  */
-@MapperScan("com.xiix.middle.dao.mapper")
+@MapperScan("com.xixi.middle.dao.mapper")
 @ComponentScan(basePackages = {"com.xixi"})
 @SpringBootApplication
 public class XixiApplication {

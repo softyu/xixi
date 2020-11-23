@@ -19,7 +19,8 @@
     from red_record
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <insert id="insertSelective">
+
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id">>
     insert into red_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">id,</if>
@@ -41,6 +42,7 @@
       <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
     </trim>
   </insert>
+
   <update id="updateId">
     update red_record
     set id = #{id,jdbcType=NUMERIC}
