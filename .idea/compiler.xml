@@ -9,11 +9,13 @@
         <module name="middle-web" />
         <module name="middle-api" />
         <module name="middle-dao" />
+        <module name="middle-common" />
         <module name="middle-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="middle-api" target="1.8" />
+      <module name="middle-common" target="1.8" />
       <module name="middle-dao" target="1.8" />
       <module name="middle-service" target="1.8" />
       <module name="middle-web" target="1.8" />
@@ -23,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="middle-api" options="-parameters" />
+      <module name="middle-common" options="-parameters" />
       <module name="middle-dao" options="-parameters" />
       <module name="middle-service" options="-parameters" />
       <module name="middle-web" options="-parameters" />

@@ -20,7 +20,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id">>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id">
     insert into red_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">id,</if>

@@ -25,6 +25,8 @@ public class PubRedPacketService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    RedService redService;
 
     public String publishRed(RedPacketBO redPacketBO) {
         if (redPacketBO.getAmountMoney()<=zero||redPacketBO.getTotalPeople()<=zero){
@@ -42,12 +44,13 @@ public class PubRedPacketService {
         String redId = new StringBuffer(redPrefix).append(redPacketBO.getUserId()).append(":").append(redUniqueKey).toString();
         redisTemplate.opsForList().leftPushAll(redId, sumRedPackets);
 
-        String  redTotal = new StringBuffer().append(":").append("total").toString();
+        String  redTotal = new StringBuffer(redId).append(":").append("total").toString();
         redisTemplate.opsForValue().set(redTotal, redPacketBO.getAmountMoney());
 
+        // async 异步失败了，缓存的数据一致存在，这不是很坑吗？？？？？
 
         // sync save db
-
+        redService.asyncWriteToDb(redId,redPacketBO,sumRedPackets);
 
         return redId;
 
