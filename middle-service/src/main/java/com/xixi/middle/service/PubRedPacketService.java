@@ -1,6 +1,7 @@
 package com.xixi.middle.service;
 
 import com.xixi.middle.bo.RedPacketBO;
+import com.xixi.middle.bo.RobPacketBO;
 import com.xixi.util.RedPacketUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -56,4 +57,5 @@ public class PubRedPacketService {
 
 
     }
+
 }
