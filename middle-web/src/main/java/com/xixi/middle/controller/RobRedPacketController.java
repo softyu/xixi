@@ -6,10 +6,7 @@ import com.xixi.middle.service.RobRedPacketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -28,8 +25,8 @@ public class RobRedPacketController {
     @Autowired
     RobRedPacketService robRedPacketService;
 
-    @PostMapping("/red")
-    public BigDecimal rob(@RequestBody RobPacketReq robPacketReq) {
+    @GetMapping("/red")
+    public BigDecimal rob(RobPacketReq robPacketReq) {
         RobPacketBO robPacketBO = new RobPacketBO();
         BeanUtils.copyProperties(robPacketReq, robPacketBO);
         return robRedPacketService.rob(robPacketBO);
