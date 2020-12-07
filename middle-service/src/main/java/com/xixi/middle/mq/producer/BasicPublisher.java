@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class BasicPublisher {
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Autowired
     RabbitTemplate rabbitTemplate;
@@ -41,7 +40,8 @@ public class BasicPublisher {
 
             rabbitTemplate.setRoutingKey(env.getProperty("mq.basic.info.routing.key.name"));
 
-            Message msg = MessageBuilder.withBody(message).build();
+
+            Message msg = MessageBuilder.withBody(message).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
 
             rabbitTemplate.convertAndSend(msg);
         } catch (Exception e) {

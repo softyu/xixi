@@ -28,4 +28,10 @@ public class RabbitMqController {
         return rabbitMqService.pubMqMsg(hello);
     }
 
+
+    @PostMapping("/deadPub")
+    public Boolean deadPubMsg(@RequestBody String deadMsg) {
+        return rabbitMqService.deadPubMsg(deadMsg);
+    }
+
 }
