@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
  * @version V1.0
  * @Project: xixi
  * @Package com.xixi.middle.config
- * @Description: TODO
+ * @Description: redisson
  * @date Date : 2020年12月07日 5:54 下午
  */
 @Configuration
