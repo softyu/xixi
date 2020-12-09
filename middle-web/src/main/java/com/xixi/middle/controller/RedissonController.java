@@ -24,4 +24,17 @@ public class RedissonController {
     public Object filter(Long userId) {
         return redissonService.filter(userId);
     }
+
+
+
+    @GetMapping("/mq/pubSub")
+    public Object pubSub(String userId) {
+        return redissonService.pubSub(userId);
+    }
+
+
+    @GetMapping("/mq/delayMq")
+    public Object delayMq(String userId) {
+        return redissonService.delayMq(userId);
+    }
 }

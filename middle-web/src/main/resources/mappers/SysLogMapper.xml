@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xixi.middle.dao.mapper.SysLogMapper">
+
+
+    <insert id="insertSelective">
+        insert into sys_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="data != null">data,</if>
+            <if test="memo != null">memo,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=NUMERIC},</if>
+            <if test="userId != null">#{userId,jdbcType=VARCHAR},</if>
+            <if test="data != null">#{data,jdbcType=VARCHAR},</if>
+            <if test="memo != null">#{memo,jdbcType=VARCHAR},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+
+
+    <select id="selectByPrimaryKey" resultType="com.xixi.middle.dao.model.SysLog">
+        select * from sys_log
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+        </where>
+    </select>
+
+</mapper>
