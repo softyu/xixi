@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xixi.middle.dao.mapper.BlogPraiseMapper">
+
+
+    <insert id="insertSelective">
+        insert into blog_praise
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="praiseId != null">praise_id,</if>
+            <if test="blogId != null">blog_id,</if>
+            <if test="status != null">status,</if>
+            <if test="praiseTime != null">praise_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=NUMERIC},</if>
+            <if test="praiseId != null">#{praiseId,jdbcType=INT},</if>
+            <if test="blogId != null">#{blogId,jdbcType=INT},</if>
+            <if test="status != null">#{status,jdbcType=INT},</if>
+            <if test="praiseTime != null">#{praiseTime,jdbcType=TIMESTAMP},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSelective">
+        update blog_praise
+        set status = #{status},
+        update_time = now(),
+        praise_time = now(),
+        create_time = now()
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="blogId!=null">
+                blog_id = #{blogId}
+            </if>
+            <if test="praiseId!=null">
+                praise_id = #{praiseId}
+            </if>
+        </where>
+    </update>
+
+
+    <select id="selectByPrimaryKey" resultType="com.xixi.middle.dao.model.BlogPraise">
+        select * from blog_praise
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="blogId!=null">
+                blog_id = #{blogId}
+            </if>
+            status = 1;
+        </where>
+    </select>
+
+    <select id="selectByBlogCount" resultType="java.lang.Long">
+        select count(1) from blog_praise
+        <where>
+            <if test="blogId!=null">
+                blog_id = #{blogId}
+            </if>
+            status = 1;
+        </where>
+    </select>
+    <select id="selectPraiseRank" resultType="com.xixi.middle.dao.model.BlogPraise">
+        select count(1) as count, blog_id from blog_praise
+        <where>
+            status = 1;
+        </where>
+        group by blog_id
+
+        order by count desc
+    </select>
+
+</mapper>
